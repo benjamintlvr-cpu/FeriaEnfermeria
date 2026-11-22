@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnferComp - Redes Sociales y Salud</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <div class="topbar">
+        <button type="button" class="top-left-btn" id="btn-top-selfeval">
+            📱 Autoevaluación Móvil
+        </button>
+        <button type="button" class="dots-btn" id="btn-dots-menu" aria-label="Menú de opciones" title="Menú">
+            ⋮
+        </button>
+
+        <div class="dropdown-menu" id="dropdown-menu">
+            <button type="button" class="dropdown-item" data-view="register-screen">📝 Registro y Evaluación Principal</button>
+            <button type="button" class="dropdown-item" data-view="selfeval-screen">📱 Autoevaluación Dependencia Móvil</button>
+            <button type="button" class="dropdown-item" data-view="ethics-screen">🩺 Ética del Profesional de la Salud</button>
+            <button type="button" class="dropdown-item" data-view="counseling-screen">💬 Consejería y Cuidados</button>
+            <button type="button" class="dropdown-item" data-view="bibliography-screen">📚 Referencias Bibliográficas</button>
+            <button type="button" class="dropdown-item" data-view="authors-screen">👥 Autores y Docente Tutor</button>
+            <button type="button" class="dropdown-item" data-view="students-screen">📋 Lista de Contestados (<span id="menu-count">0</span>)</button>
+            <button type="button" class="dropdown-item" id="menu-export-csv">⬇️ Exportar Datos CSV (Móvil)</button>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="badge-app">EnferComp • Sesión 45 Minutos</div>
+        <h1>Redes Sociales e Impacto en la Salud</h1>
+        <div class="subtitle" id="active-student-banner">Estudiante no registrado</div>
+    </div>
+
+    <form name="resultados-estudiantes" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="hidden">
+        <input type="hidden" name="form-name" value="resultados-estudiantes">
+        <input type="text" name="nombre" id="net-nombre">
+        <input type="text" name="apellidos" id="net-apellidos">
+        <input type="text" name="sexo" id="net-sexo">
+        <input type="text" name="carrera" id="net-carrera">
+        <input type="text" name="sede" id="net-sede">
+        <input type="text" name="puntaje" id="net-puntaje">
+        <input type="text" name="etica" id="net-etica">
+        <input type="text" name="dependencia" id="net-dependencia">
+        <input type="text" name="detalle" id="net-detalle">
+    </form>
+
+    <section id="register-screen" class="view-panel">
+        <div class="logo-frame">
+            <img src="https://i.ibb.co/0p9W5FMx/logo-22-removebg-preview.png" alt="Logotipo Enfermería y Salud Digital">
+        </div>
+        <div class="register-title">Registro de Estudiante</div>
+
+        <div class="form-group">
+            <label for="input-nombre">Nombre:</label>
+            <input type="text" id="input-nombre" class="form-control" placeholder="Ej. Juan Carlos" required>
+        </div>
+        <div class="form-group">
+            <label for="input-apellidos">Apellidos:</label>
+            <input type="text" id="input-apellidos" class="form-control" placeholder="Ej. Pérez López" required>
+        </div>
+        <div class="form-group">
+            <label for="input-sexo">Sexo:</label>
+            <select id="input-sexo" class="form-control">
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro / Prefiero no decirlo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="input-carrera">Carrera:</label>
+            <select id="input-carrera" class="form-control">
+                <option value="Enfermería">Enfermería</option>
+                <option value="Farmacia">Farmacia</option>
+                <option value="Bioanálisis">Bioanálisis</option>
+                <option value="Medicina">Medicina</option>
+                <option value="Ingeniería Civil">Ingeniería Civil</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="input-sede">Sede:</label>
+            <select id="input-sede" class="form-control">
+                <option value="Condega">Condega</option>
+                <option value="Estelí">Estelí</option>
+            </select>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="btn-start-quiz">Comenzar Evaluación</button>
+        <button type="button" class="btn btn-secondary" id="btn-open-ethics">🩺 Evaluar Ética del Profesional de la Salud</button>
+        <button type="button" class="btn btn-secondary" id="btn-open-students">📋 Ver Estudiantes Contestados (<span id="reg-count">0</span>)</button>
+        <button type="button" class="btn btn-secondary" id="btn-toggle-credits">👥 Ver Equipo, Tutores y Referencias</button>
+
+        <div id="credits-panel" class="info-card hidden">
+            <h3>Docente Tutor:</h3>
+            <p>Lic. Marvin Talavera</p>
+            <h3>Estudiantes Autores:</h3>
+            <ul>
+                <li>SERRANO RIVERA MELBA JULISSA</li>
+                <li>TALAVERA CASTILLO MAYRA DE JESUS</li>
+                <li>TERCERO BELLORIN SAYDI MERCEDES</li>
+                <li>CRUZ MATEY CONY ANAHI</li>
+                <li>JOSSELING MARCELA CHAVARRIA IGLESIAS</li>
+            </ul>
+            <h3>Referencias Bibliográficas:</h3>
+            <ul>
+                <li>Ramos Suazo, K. F., &amp; Canales González, M. A. (2017). <em>Impacto de las redes sociales en la salud de los usuarios que usan el parque Wifi del Municipio de Yalagüina en el año 2017</em>. UNAN-Managua, FAREM-Estelí.</li>
+                <li>Méndez Paguaga, G. V., Pérez Falcón, M. Y., &amp; Castillo Quintero, J. A. (2016). <em>Impacto psicosocial del uso adictivo de las redes sociales en estudiantes jóvenes de tercer año de la carrera Trabajo Social de FAREM-Estelí, en el segundo semestre del año 2015</em>. UNAN-Managua, FAREM-Estelí.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="selfeval-screen" class="view-panel hidden">
+        <div class="header">
+            <div class="badge-app">Autoevaluación Digital</div>
+            <h2>Nivel de Dependencia al Móvil</h2>
+        </div>
+
+        <div class="info-card">
+            <div class="form-group">
+                <label for="se-q1">1. ¿Revisas el teléfono inmediatamente al despertar o antes de dormir?</label>
+                <select id="se-q1" class="form-control">
+                    <option value="0">Nunca o casi nunca</option>
+                    <option value="1">A veces</option>
+                    <option value="2">Casi todos los días</option>
+                    <option value="3">Siempre</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="se-q2">2. ¿Sientes ansiedad, inquietud o angustia si te quedas sin internet o batería?</label>
+                <select id="se-q2" class="form-control">
+                    <option value="0">No</option>
+                    <option value="1">Levemente</option>
+                    <option value="2">Moderadamente</option>
+                    <option value="3">Intensamente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="se-q3">3. ¿Has descuidado horas de sueño, estudio o convivencia familiar por el móvil?</label>
+                <select id="se-q3" class="form-control">
+                    <option value="0">Nunca</option>
+                    <option value="1">Ocasionalmente</option>
+                    <option value="2">Frecuentemente</option>
+                    <option value="3">Muy frecuentemente</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="btn-calc-selfeval">Calcular Nivel de Dependencia</button>
+
+            <div id="selfeval-result" class="result-box result-box--spaced hidden">
+                <p id="se-level-title" class="se-level-title"></p>
+                <p id="se-level-desc" class="se-level-desc"></p>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary" data-back="register-screen">← Volver al Registro</button>
+    </section>
+
+    <section id="ethics-screen" class="view-panel hidden">
+        <div class="header">
+            <div class="badge-app">Ética Clínica y Digital</div>
+            <h2>Ética del Profesional de la Salud</h2>
+        </div>
+
+        <div class="info-card">
+            <h3>Principios Éticos ante el Uso de Redes Sociales y Salud Digital</h3>
+            <ul>
+                <li><strong>Confidencialidad y Secreto Profesional:</strong> Nunca difundir datos, fotografías, audios o historias clínicas de pacientes en redes sociales, grupos de mensajería ni plataformas abiertas.</li>
+                <li><strong>No Maleficencia y Dignidad Humana:</strong> Evitar la estigmatización, burla o juicio hacia personas con nomofobia, aislamiento social, trastornos del sueño o cuadros de ansiedad.</li>
+                <li><strong>Beneficencia y Veracidad Científica:</strong> Compartir información sanitaria basada en evidencia, orientando con empatía y derivando oportunamente a psicología o psiquiatría.</li>
+                <li><strong>Autonomía y Consentimiento Informado:</strong> Respetar los límites del paciente y pedir autorización explícita antes de cualquier registro educativo o clínico.</li>
+            </ul>
+        </div>
+
+        <div class="info-card" id="ethics-quiz-box">
+            <h3>Mini Evaluación de Ética Profesional (5 Preguntas)</h3>
+            <div class="stats-bar stats-bar--compact">
+                <span id="eth-counter">Ética 1/5</span>
+                <span id="eth-score" class="score-pill">Puntaje Ética: 0/50</span>
+            </div>
+            <div id="eth-question" class="question-text question-text--compact"></div>
+            <div id="eth-options" class="options-grid"></div>
+            <div id="eth-feedback" class="feedback-box"></div>
+            <button type="button" class="btn btn-primary hidden" id="btn-eth-next">Siguiente Pregunta de Ética ➔</button>
+        </div>
+
+        <button type="button" class="btn btn-secondary" data-back="register-screen">← Volver al Registro</button>
+    </section>
+
+    <section id="counseling-screen" class="view-panel hidden">
+        <div class="header">
+            <div class="badge-app">Orientación y Apoyo</div>
+            <h2>Consejería y Cuidados Integrados</h2>
+        </div>
+        <div class="info-card">
+            <h3>Entrevista Clínica sin Juicios</h3>
+            <p>Escuchar activamente cómo el paciente organiza su tiempo digital permite identificar aislamiento social, estrés académico o familiar sin generar culpa ni rechazo.</p>
+            <h3>Higiene del Sueño y Prevención del Vamping</h3>
+            <p>Apagar pantallas al menos 60 minutos antes de dormir, evitar el brillo intenso en la oscuridad y establecer horarios fijos de descanso protegen el ciclo circadiano.</p>
+            <h3>Acompañamiento Familiar y Derivación</h3>
+            <p>Involucrar a la familia en rutinas saludables, promover actividad física al aire libre y referir a psicología o psiquiatría ante crisis severas o signos de alarma.</p>
+        </div>
+        <button type="button" class="btn btn-secondary" data-back="register-screen">← Volver al Registro</button>
+    </section>
+
+    <section id="bibliography-screen" class="view-panel hidden">
+        <div class="header">
+            <div class="badge-app">Respaldo Académico</div>
+            <h2>Referencias Bibliográficas</h2>
+        </div>
+        <div class="info-card">
+            <h3>Estudios e Investigaciones de Referencia</h3>
+            <ul>
+                <li>Ramos Suazo, K. F., &amp; Canales González, M. A. (2017). <em>Impacto de las redes sociales en la salud de los usuarios que usan el parque Wifi del Municipio de Yalagüina en el año 2017</em>. UNAN-Managua, FAREM-Estelí.</li>
+                <li>Méndez Paguaga, G. V., Pérez Falcón, M. Y., &amp; Castillo Quintero, J. A. (2016). <em>Impacto psicosocial del uso adictivo de las redes sociales en estudiantes jóvenes de tercer año de la carrera Trabajo Social de FAREM-Estelí, en el segundo semestre del año 2015</em>. UNAN-Managua, FAREM-Estelí.</li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-secondary" data-back="register-screen">← Volver al Registro</button>
+    </section>
+
+    <section id="authors-screen" class="view-panel hidden">
+        <div class="header">
+            <div class="badge-app">Créditos Académicos</div>
+            <h2>Autores y Docente Tutor</h2>
+        </div>
+        <div class="info-card">
+            <h3>Docente Tutor:</h3>
+            <p>Lic. Marvin Talavera</p>
+            <h3>Estudiantes Autores:</h3>
+            <ul>
+                <li>SERRANO RIVERA MELBA JULISSA</li>
+                <li>TALAVERA CASTILLO MAYRA DE JESUS</li>
+                <li>TERCERO BELLORIN SAYDI MERCEDES</li>
+                <li>CRUZ MATEY CONY ANAHI</li>
+                <li>JOSSELING MARCELA CHAVARRIA IGLESIAS</li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-secondary" data-back="register-screen">← Volver al Registro</button>
+    </section>
+
+    <section id="students-screen" class="view-panel hidden">
+        <div class="header">
+            <div class="badge-app">Registro Guardado</div>
+            <h2>Estudiantes que han Contestado</h2>
+        </div>
+        <div class="info-card">
+            <div class="students-toolbar">
+                <strong id="students-total-label">Total registrados: 0</strong>
+                <div class="students-actions">
+                    <button type="button" class="top-left-btn" id="btn-export-from-list">⬇️ Exportar CSV</button>
+                    <button type="button" class="btn-danger-sm" id="btn-clear-students">Limpiar todo</button>
+                </div>
+            </div>
+            <div id="students-list-container" class="student-list-box"></div>
+        </div>
+        <button type="button" class="btn btn-secondary" data-back="register-screen">← Volver al Registro</button>
+    </section>
+
+    <section id="quiz-screen" class="view-panel hidden">
+        <div class="stats-bar">
+            <span id="q-counter">Pregunta 1/10</span>
+            <span id="timer-text">⏱️ 15s</span>
+            <span id="score-display" class="score-pill">Puntaje: 0/100</span>
+        </div>
+
+        <div class="timer-bar-bg">
+            <div id="timer-bar" class="timer-bar-fill"></div>
+        </div>
+
+        <div class="image-frame" id="frame-container">
+            <img id="question-img" src="" alt="Imagen de la pregunta">
+        </div>
+
+        <div id="question-text" class="question-text"></div>
+        <div id="options-container" class="options-grid"></div>
+        <div id="feedback-box" class="feedback-box"></div>
+        <button type="button" class="btn btn-primary hidden" id="btn-next-question">Siguiente Pregunta ➔</button>
+    </section>
+
+    <section id="end-screen" class="view-panel end-screen hidden">
+        <h2 id="end-title" class="end-title"></h2>
+        <div class="result-box">
+            <p class="final-label">Calificación Final</p>
+            <p id="final-score" class="final-score"></p>
+            <p id="final-details" class="final-details"></p>
+            <p id="final-extra" class="final-extra"></p>
+            <p id="final-summary" class="final-summary"></p>
+        </div>
+        <p class="save-confirmation">
+            ✔ Datos guardados en el dispositivo y registrados en la lista de estudiantes.
+        </p>
+        <button type="button" class="btn btn-primary" id="btn-export-results">⬇️ Exportar Datos CSV al Móvil</button>
+        <button type="button" class="btn btn-secondary" id="btn-view-list-end">📋 Ver Lista de Estudiantes Contestados</button>
+    </section>
+</div>
+
+<div class="modal-backdrop" id="csv-modal">
+    <div class="modal-card">
+        <h3 class="modal-title">Exportación CSV Lista</h3>
+        <p class="modal-status" id="csv-modal-status">
+            Se intentó descargar el archivo CSV. Si tu móvil bloquea descargas directas, copia este texto o guárdalo.
+        </p>
+        <textarea id="csv-output-text" class="csv-textarea" readonly></textarea>
+        <div class="modal-actions">
+            <button type="button" class="btn btn-primary btn-modal" id="btn-copy-csv">📋 Copiar CSV</button>
+            <button type="button" class="btn btn-secondary btn-modal" id="btn-close-csv-modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>
