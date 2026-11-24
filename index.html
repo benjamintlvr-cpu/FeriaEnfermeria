@@ -13,9 +13,14 @@
         <button type="button" class="top-left-btn" id="btn-top-selfeval">
             📱 Autoevaluación Móvil
         </button>
-        <button type="button" class="dots-btn" id="btn-dots-menu" aria-label="Menú de opciones" title="Menú">
-            ⋮
-        </button>
+        <div class="topbar-right">
+            <button type="button" class="top-left-btn" id="btn-toggle-sound" aria-pressed="true">
+                🔊 Audio ON
+            </button>
+            <button type="button" class="dots-btn" id="btn-dots-menu" aria-label="Menú de opciones" title="Menú">
+                ⋮
+            </button>
+        </div>
 
         <div class="dropdown-menu" id="dropdown-menu">
             <button type="button" class="dropdown-item" data-view="register-screen">📝 Registro y Evaluación Principal</button>
@@ -32,7 +37,6 @@
     <div class="header">
         <div class="badge-app">EnferComp • Sesión 45 Minutos</div>
         <h1>Redes Sociales e Impacto en la Salud</h1>
-        <div class="subtitle" id="active-student-banner">Estudiante no registrado</div>
     </div>
 
     <form name="resultados-estudiantes" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="hidden">
@@ -71,13 +75,11 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="input-carrera">Carrera:</label>
+            <label for="input-carrera">Estado Civil :</label>
             <select id="input-carrera" class="form-control">
-                <option value="Enfermería">Enfermería</option>
-                <option value="Farmacia">Farmacia</option>
-                <option value="Bioanálisis">Bioanálisis</option>
-                <option value="Medicina">Medicina</option>
-                <option value="Ingeniería Civil">Ingeniería Civil</option>
+                <option value="Enfermería">Casado </option>
+                <option value="Farmacia">Soltero</option>
+                <option value="Femenino">Prefiero no contestar ahora </option>
             </select>
         </div>
         <div class="form-group">
@@ -85,6 +87,8 @@
             <select id="input-sede" class="form-control">
                 <option value="Condega">Condega</option>
                 <option value="Estelí">Estelí</option>
+                <option value="Matagalpa">Matagalpa</option>
+                <option value="Managua">Managua</option>
             </select>
         </div>
 
@@ -106,51 +110,52 @@
             </ul>
             <h3>Referencias Bibliográficas:</h3>
             <ul>
-                <li>Ramos Suazo, K. F., &amp; Canales González, M. A. (2017). <em>Impacto de las redes sociales en la salud de los usuarios que usan el parque Wifi del Municipio de Yalagüina en el año 2017</em>. UNAN-Managua, FAREM-Estelí.</li>
-                <li>Méndez Paguaga, G. V., Pérez Falcón, M. Y., &amp; Castillo Quintero, J. A. (2016). <em>Impacto psicosocial del uso adictivo de las redes sociales en estudiantes jóvenes de tercer año de la carrera Trabajo Social de FAREM-Estelí, en el segundo semestre del año 2015</em>. UNAN-Managua, FAREM-Estelí.</li>
+                <li>Ramos Suazo, K. F., &amp; Canales González, M. A. (2017). <em>Impacto de las redes sociales en la salud de los usuarios que usan el parque Wifi del Municipio de Yalagüina en el año 2017</em> [Tesis de grado, UNAN-Managua, FAREM-Estelí]. Repositorio Institucional UNAN-Managua. https://repositorio.unan.edu.ni/id/eprint/9477/</li>
+                <li>Méndez Paguaga, G. V., Pérez Falcón, M. Y., &amp; Castillo Quintero, J. A. (2016). <em>Impacto psicosocial del uso adictivo de las redes sociales en estudiantes jóvenes de tercer año de la carrera Trabajo Social de FAREM-Estelí, en el segundo semestre del año 2015</em> [Seminario de graduación, UNAN-Managua, FAREM-Estelí]. Repositorio Institucional UNAN-Managua. https://repositorio.unan.edu.ni/id/eprint/1759/</li>
+                <li>Universidad Nacional Autónoma de Nicaragua, Managua [UNAN-Managua, FAREM-Estelí]. <em>Influencia de las redes sociales en la construcción de la personalidad</em>. Repositorio Institucional UNAN-Managua. https://repositorio.unan.edu.ni/id/eprint/11339/</li>
+                <li>Universidad Nacional Autónoma de Nicaragua, Managua [UNAN-Managua, Facultad de Ciencias Médicas]. <em>Ansiedad y depresión en estudiantes de primer año de medicina de la Facultad de Ciencias Médicas de la Universidad Nacional Autónoma de Nicaragua, UNAN Managua, en el I semestre del año 2022</em>. Repositorio Institucional UNAN-Managua. https://repositorio.unan.edu.ni/id/eprint/19406/</li>
             </ul>
         </div>
     </section>
 
     <section id="selfeval-screen" class="view-panel hidden">
         <div class="header">
-            <div class="badge-app">Autoevaluación Digital</div>
+            <div class="badge-app">Reto de Autoevaluación con Tiempo e Imagen</div>
             <h2>Nivel de Dependencia al Móvil</h2>
         </div>
 
         <div class="info-card">
-            <div class="form-group">
-                <label for="se-q1">1. ¿Revisas el teléfono inmediatamente al despertar o antes de dormir?</label>
-                <select id="se-q1" class="form-control">
-                    <option value="0">Nunca o casi nunca</option>
-                    <option value="1">A veces</option>
-                    <option value="2">Casi todos los días</option>
-                    <option value="3">Siempre</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="se-q2">2. ¿Sientes ansiedad, inquietud o angustia si te quedas sin internet o batería?</label>
-                <select id="se-q2" class="form-control">
-                    <option value="0">No</option>
-                    <option value="1">Levemente</option>
-                    <option value="2">Moderadamente</option>
-                    <option value="3">Intensamente</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="se-q3">3. ¿Has descuidado horas de sueño, estudio o convivencia familiar por el móvil?</label>
-                <select id="se-q3" class="form-control">
-                    <option value="0">Nunca</option>
-                    <option value="1">Ocasionalmente</option>
-                    <option value="2">Frecuentemente</option>
-                    <option value="3">Muy frecuentemente</option>
-                </select>
+            <div class="stats-bar">
+                <span id="se-counter">Pregunta 1/8</span>
+                <span id="se-timer-text">⏱️ 20s</span>
+                <span id="se-xp" class="score-pill">XP Hábitos: 0/24 pts</span>
             </div>
 
-            <button type="button" class="btn btn-primary" id="btn-calc-selfeval">Calcular Nivel de Dependencia</button>
+            <div class="timer-bar-bg">
+                <div id="se-timer-bar" class="timer-bar-fill"></div>
+            </div>
+
+            <div class="progress-mini-wrap">
+                <div class="progress-mini-label">Progreso del reto</div>
+                <div class="progress-mini-bg">
+                    <div id="se-progress-bar" class="progress-mini-fill"></div>
+                </div>
+            </div>
+
+            <div class="image-frame">
+                <img id="se-question-img" src="" alt="Imagen de autoevaluación móvil">
+            </div>
+
+            <div id="se-question-text" class="question-text question-text--compact"></div>
+            <div id="se-options" class="options-grid"></div>
+            <div id="se-feedback" class="feedback-box"></div>
+
+            <button type="button" class="btn btn-primary hidden" id="btn-se-next">Siguiente ➔</button>
+            <button type="button" class="btn btn-primary hidden" id="btn-calc-selfeval">Calcular Nivel de Dependencia</button>
 
             <div id="selfeval-result" class="result-box result-box--spaced hidden">
                 <p id="se-level-title" class="se-level-title"></p>
+                <p id="se-level-score" class="final-extra"></p>
                 <p id="se-level-desc" class="se-level-desc"></p>
             </div>
         </div>
@@ -197,10 +202,24 @@
         <div class="info-card">
             <h3>Entrevista Clínica sin Juicios</h3>
             <p>Escuchar activamente cómo el paciente organiza su tiempo digital permite identificar aislamiento social, estrés académico o familiar sin generar culpa ni rechazo.</p>
+
             <h3>Higiene del Sueño y Prevención del Vamping</h3>
             <p>Apagar pantallas al menos 60 minutos antes de dormir, evitar el brillo intenso en la oscuridad y establecer horarios fijos de descanso protegen el ciclo circadiano.</p>
+
             <h3>Acompañamiento Familiar y Derivación</h3>
             <p>Involucrar a la familia en rutinas saludables, promover actividad física al aire libre y referir a psicología o psiquiatría ante crisis severas o signos de alarma.</p>
+
+            <h3>Manejo de la Ansiedad por Desconexión (Nomofobia)</h3>
+            <p>Validar la inquietud o molestia física ante la falta de señal o batería, enseñar técnicas de respiración lenta y acordar metas graduales para reducir la dependencia sin suspender bruscamente el apoyo.</p>
+
+            <h3>Ergonomía y Cuidado Visual Digital</h3>
+            <p>Mantener la pantalla a la altura de los ojos, evitar la postura encorvada ("cuello de texto"), parpadear con frecuencia y realizar pausas visuales cada 20 minutos previenen cefaleas, fatiga ocular y dolor cervical.</p>
+
+            <h3>Límites Saludables y Autonomía Digital</h3>
+            <p>Desactivar notificaciones no esenciales durante el estudio, el descanso o las comidas en familia y definir franjas horarias sin móvil fortalecen la concentración y los vínculos presenciales.</p>
+
+            <h3>Prevención de Desinformación y Comparación Social</h3>
+            <p>Acompañar a jóvenes y pacientes a contrastar contenidos virales de salud con fuentes confiables y a reconocer que las redes muestran imágenes editadas ayuda a proteger la autoestima y el bienestar emocional.</p>
         </div>
         <button type="button" class="btn btn-secondary" data-back="register-screen">← Volver al Registro</button>
     </section>
@@ -211,10 +230,12 @@
             <h2>Referencias Bibliográficas</h2>
         </div>
         <div class="info-card">
-            <h3>Estudios e Investigaciones de Referencia</h3>
+            <h3>Estudios e Investigaciones de Referencia (UNAN-Managua)</h3>
             <ul>
-                <li>Ramos Suazo, K. F., &amp; Canales González, M. A. (2017). <em>Impacto de las redes sociales en la salud de los usuarios que usan el parque Wifi del Municipio de Yalagüina en el año 2017</em>. UNAN-Managua, FAREM-Estelí.</li>
-                <li>Méndez Paguaga, G. V., Pérez Falcón, M. Y., &amp; Castillo Quintero, J. A. (2016). <em>Impacto psicosocial del uso adictivo de las redes sociales en estudiantes jóvenes de tercer año de la carrera Trabajo Social de FAREM-Estelí, en el segundo semestre del año 2015</em>. UNAN-Managua, FAREM-Estelí.</li>
+                <li>Ramos Suazo, K. F., &amp; Canales González, M. A. (2017). <em>Impacto de las redes sociales en la salud de los usuarios que usan el parque Wifi del Municipio de Yalagüina en el año 2017</em> [Tesis de grado, UNAN-Managua, FAREM-Estelí]. Repositorio Institucional UNAN-Managua. https://repositorio.unan.edu.ni/id/eprint/9477/</li>
+                <li>Méndez Paguaga, G. V., Pérez Falcón, M. Y., &amp; Castillo Quintero, J. A. (2016). <em>Impacto psicosocial del uso adictivo de las redes sociales en estudiantes jóvenes de tercer año de la carrera Trabajo Social de FAREM-Estelí, en el segundo semestre del año 2015</em> [Seminario de graduación, UNAN-Managua, FAREM-Estelí]. Repositorio Institucional UNAN-Managua. https://repositorio.unan.edu.ni/id/eprint/1759/</li>
+                <li>Universidad Nacional Autónoma de Nicaragua, Managua [UNAN-Managua, FAREM-Estelí]. <em>Influencia de las redes sociales en la construcción de la personalidad</em>. Repositorio Institucional UNAN-Managua. https://repositorio.unan.edu.ni/id/eprint/11339/</li>
+                <li>Universidad Nacional Autónoma de Nicaragua, Managua [UNAN-Managua, Facultad de Ciencias Médicas]. <em>Ansiedad y depresión en estudiantes de primer año de medicina de la Facultad de Ciencias Médicas de la Universidad Nacional Autónoma de Nicaragua, UNAN Managua, en el I semestre del año 2022</em>. Repositorio Institucional UNAN-Managua. https://repositorio.unan.edu.ni/id/eprint/19406/</li>
             </ul>
         </div>
         <button type="button" class="btn btn-secondary" data-back="register-screen">← Volver al Registro</button>
@@ -260,9 +281,9 @@
 
     <section id="quiz-screen" class="view-panel hidden">
         <div class="stats-bar">
-            <span id="q-counter">Pregunta 1/10</span>
-            <span id="timer-text">⏱️ 15s</span>
-            <span id="score-display" class="score-pill">Puntaje: 0/100</span>
+            <span id="q-counter">Pregunta 1/20</span>
+            <span id="timer-text">⏱️ 60s</span>
+            <span id="score-display" class="score-pill">Puntaje: 0/200</span>
         </div>
 
         <div class="timer-bar-bg">
